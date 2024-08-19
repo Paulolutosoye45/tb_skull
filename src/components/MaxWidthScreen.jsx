@@ -9,7 +9,7 @@ const MaxWidthScreen = ({ children }) => {
 
   return (
     <div className='mx-auto w-full max-w-screen-xl px-2.5 md:px-20 overflow-hidden'>
-    <div className=' mx-auto max-w-3xl bg-[#000000]'>
+    <div className=' mx-auto max-w-3xl bg-[#1b2023]'>
         {children}
     </div>
     </div>
