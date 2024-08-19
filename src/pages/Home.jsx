@@ -8,6 +8,8 @@ import { PiFootballFill } from "react-icons/pi";
 import { useState, useRef , useEffect} from "react";
 
 const Home = () => {
+  console.log('hello')
+  console.log('image here')
   useEffect(() => {
     const telegram = window.Telegram?.WebApp;
 

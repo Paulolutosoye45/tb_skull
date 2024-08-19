@@ -7,6 +7,7 @@ import {
 import Home from './pages/Home';
 
 function App() {
+  console.log('hello')
    const router = createBrowserRouter([
     {
       path: "/",
