@@ -8,8 +8,8 @@ import { Link, NavLink } from 'react-router-dom';
 const MaxWidthScreen = ({ children }) => {
 
   return (
-    <div className='mx-auto w-full max-w-screen-xl px-2.5 md:px-20 overflow-hidden'>
-    <div className=' mx-auto max-w-3xl bg-[#1b2023]'>
+    <div className='mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden'>
+    <div className=' mx-auto max-w-3xl bg-[#213045]'>
         {children}
     </div>
     </div>
