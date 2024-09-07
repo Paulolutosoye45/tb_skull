@@ -1,5 +1,6 @@
-// UserContext.js
+import axios from 'axios';
 import { createContext, useState, useEffect } from 'react';
+import { retrieveUserIdFromSession, storeUserIdInSession } from '../pages/helper';
 
 // Create the UserContext
 const UserContext = createContext();
@@ -9,27 +10,45 @@ export default UserContext;
 export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [matchDetails, setMatchDetails] = useState([]);
+  const [referralCode, setReferralCode] = useState(null);
+  
+  // Retrieve user ID from session
+  const userVar = retrieveUserIdFromSession();
 
-  // Fetch data on mount and populate context
-  // https://6168e618-1fcc-4496-9e38-d30f10cb37c4.mock.pstmn.io/matches
-  useEffect(() => {
-    fetch("http://localhost:1200/user")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((result) => {
-        setUsers(result);
-        if (result.length > 0) {
-          setMatchDetails(result[0].matchDetails || []);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
+  const fetchData = async (userIds) => {
+    const userId = userVar || userIds;
+    try {
+      const response = await axios.post('https://1247-102-88-82-150.ngrok-free.app/api/bot/usergames', {
+        userId,
       });
-  }, []);
+
+      const result = response.data;
+      setUsers(result);
+      setMatchDetails(result.matchDetails || []);
+    } catch (error) {
+      console.error('Error fetching data:', error.response || error.message);
+    }
+  };
+
+  // Extract userId from the URL and session
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userIdParam = urlParams.get('userid');
+
+    if (userIdParam) {
+      setReferralCode(userIdParam);
+      storeUserIdInSession(userIdParam);
+    } else if (userVar) {
+      setReferralCode(userVar);
+    }
+  }, [userVar]);
+
+  // Fetch data when referralCode changes
+  useEffect(() => {
+    if (referralCode) {
+      fetchData(referralCode);
+    }
+  }, [referralCode]);
 
   // Passing down context data
   const contextData = {
@@ -37,6 +56,8 @@ export const UserProvider = ({ children }) => {
     setUsers,
     matchDetails,
     setMatchDetails,
+    referralCode,
+    setReferralCode,
   };
 
   return (

@@ -1,107 +1,167 @@
-// MatchList.js
-import { useContext, useEffect, useState } from 'react';
+import { useState, useEffect, useContext, useMemo } from 'react';
 import MatchesComp from './MatchesComp';
 import UserContext from '../context/UserContext';
 import MFooter from './MFooter';
-
-
+import Flexwrapper from './Flexwrapper';
 
 const MatchList = () => {
-const { matchDetails } = useContext(UserContext);
-const [selections, setSelections] = useState([]);
-const [selectionCount, setSelectionCount] = useState(0);
-const [totalPicks, setTotalPicks] = useState(0);
-
-const handleSelection = (matchId, team) => {
-  const existingSelectionIndex = selections.findIndex(
-    (selection) => selection.matchId === matchId
-  );
-  let updatedSelections;
-  if (existingSelectionIndex !== -1) {
-    const selectedTeam = selections[existingSelectionIndex].pickedTeam;
-    if (selectedTeam === team) {
-      updatedSelections = selections.filter(
-        (selection) => selection.matchId !== matchId
-      );
+  const { matchDetails } = useContext(UserContext);
+  const [selections, setSelections] = useState([]);
+  const [selectionCount, setSelectionCount] = useState(0);
+  const [totalPicks, setTotalPicks] = useState(0);
+  const [picked, setPicked]=useState(false)
+  const handleSelection = (id, team, isSelectedmatch) => {
+    let updatedSelections;
+    if (isSelectedmatch === team) {
+      updatedSelections = selections.filter((selection) => selection.id !== id);
+      // const det = selections.map(({selectedMatch, ...rest}) => rest);
+      // // console.log(det)
+      const details = matchDetails.map(match => ({
+        ...match,
+        selectedMatch: null,
+      }));
+      console.log(details)
     } else {
-      updatedSelections = selections.map((selection, index) =>
-        index === existingSelectionIndex
-          ? { ...selection, pickedTeam: team }
-          : selection
+      const existingSelectionIndex = selections.findIndex(
+        (selection) => selection.id === id
       );
+
+      if (existingSelectionIndex !== -1) {
+        const selectedTeam = selections[existingSelectionIndex].selectedMatch;
+  
+        if (selectedTeam === team) {
+          // If the same team is already selected, remove the selection
+          updatedSelections = selections.filter((selection) => selection.id !== id);
+        } else {
+          // Otherwise, update the selection with the new team
+          updatedSelections = selections.map((selection) =>
+            selection.id === id ? { ...selection, selectedMatch: team } : selection
+          );
+        }
+      } else {
+        // If no selection exists, add the new selection
+        updatedSelections = [
+          ...selections,
+          { id, selectedMatch: team },
+        ];
+      }
     }
+  
+    // Update the state with the new selections
+    setSelections(updatedSelections);
+  };
+  
+  
+   
+  
+  const isSelected = (id, team, isSelectedmatch) => {
+    let existingSelection = selections.find((selection) => selection.id === id);
+     if (isSelectedmatch  === team ) {
+      return  isSelectedmatch === team;
+     }
+
+      return existingSelection?.selectedMatch === team;
+  };
+  
+
+ const handlePicked = (team, selectedMatch) => {
+  // Check if selectedMatch has a value
+  if (team === selectedMatch) {
+    return true; // Return true if selectedMatch exists
   } else {
-    updatedSelections = [
-      ...selections,
-      { matchId, pickedTeam: team },
-    ];
+    return false;
   }
-
-  setSelections(updatedSelections);
 };
+ 
+  
+  const isPastMatchTime = (matchSrt) => {
+    const matchDate = new Date(matchSrt);
+    return new Date() > matchDate;
+  };
+  
+  const pastMatchTimes = useMemo(() => {
+    return matchDetails.reduce((acc, match) => {
+      acc[match.id] = isPastMatchTime(match.matchStartTime);
+      return acc;
+    }, {});
+  }, [matchDetails]);
+  
+  useEffect(() => {
+    setSelectionCount(selections.length);
+    setTotalPicks(selections.length);
+  }, [selections, setSelectionCount, setTotalPicks]);
+  
 
-const isSelected = (matchId, team) => {
-  const selectedMatch = selections.find(
-    (selection) => selection.matchId === matchId
-  );
-  return selectedMatch?.pickedTeam === team;
-};
-
-
-useEffect(() => {
-  setSelectionCount(selections.length);
-
-  // Calculate the total number of picks (count each button click)
-  const picks = selections.reduce((acc, selection) => acc + 1, 0);
-  setTotalPicks(picks);
-}, [selections]);
-
-return (
-  <div>
-    {matchDetails.map((match) => (
-      <div key={match.matchId} className="m-2 rounded-xl font-mono bg-[#213045] shadow-lg">
-        <div className="flex items-center justify-between px-4 py-2 gap-6">
+  return (
+    <div>
+  {matchDetails.length > 0 ? (
+    matchDetails.map((match) => (
+      <div
+        key={match.id}
+        className="m-2 rounded-xl font-Roboto bg-[#213045] shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]"
+      >
+        {/* Match Name
+        <Flexwrapper className="text-white text-sm font-Roboto text-center px-7 pt-2" >
+          <p className='truncate'>{match.teamAName}</p>
+          <p  className='truncate'>{match.teamBName}</p>
+        </Flexwrapper> */}
+        
+        <div className="flex items-center justify-between px-4 py-2 mb-5 gap-6">
           <button
-             onClick={() => handleSelection(match.matchId, match.teamA)}
-             className={`flex-grow bg-[#213045] text-white font-bold py-3 px-6 rounded-3xl border-2 shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]  transition-all duration-300 ease-in-out ${
-               isSelected(match.matchId, match.teamA)
-                 ? 'bg-[#32CD32] border-none'
-                 : ''
-             }`}
+            disabled={pastMatchTimes[match.id]}
+            onClick={() => handleSelection(match.id, match.teamA, match.selectedMatch)}
+            className={`flex-grow text-white py-1 px-2 rounded-3xl border-2 shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)] transition-all duration-300 ease-in-out ${
+              isSelected(match.id, match.teamA, match.selectedMatch)
+                ? 'bg-[#32CD32] border-none'
+                : ''
+            } 
+            ${pastMatchTimes[match.id] ? 'border-4 border-red-700' : ''}`}
           >
             {match.teamACode}
           </button>
+          
           <button
-            onClick={() => handleSelection(match.matchId, match.teamDraw)}
-            className={`flex-grow bg-[#213045] text-white font-bold py-3 px-6 rounded-3xl border-2 shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]  transition-all duration-300 ease-in-out ${
-              isSelected(match.matchId, match.teamDraw)
+            disabled={pastMatchTimes[match.id]}
+            onClick={() => handleSelection(match.id, match.teamDrawId, match.selectedMatch)}
+            className={`flex-grow text-white py-1 px-2 rounded-3xl border-2 shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)] transition-all duration-300 ease-in-out ${
+              isSelected(match.id, match.teamDrawId, match.selectedMatch)
                 ? 'bg-[#32CD32] border-none'
                 : ''
-            }`}
+            } 
+            ${pastMatchTimes[match.id] ? 'border-4 border-red-700' : ''}`}
           >
-            Draw
+            DRW
           </button>
+
           <button
-            onClick={() => handleSelection(match.matchId, match.teamB)}
-            className={`flex-grow bg-[#213045] text-white font-bold py-3 px-6 rounded-3xl border-2 shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]  transition-all duration-300 ease-in-out ${
-              isSelected(match.matchId, match.teamB)
+            disabled={pastMatchTimes[match.id]}
+            onClick={() => handleSelection(match.id, match.teamB, match.selectedMatch)}
+            className={`flex-grow text-white py-1 px-2 rounded-3xl border-2 shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)] transition-all duration-300 ease-in-out ${
+              isSelected(match.id, match.teamB, match.selectedMatch)
                 ? 'bg-[#32CD32] border-none'
                 : ''
-            }`}
+            }
+            ${pastMatchTimes[match.id] ? 'border-4 border-red-700' : ''}`}
           >
             {match.teamBCode}
           </button>
         </div>
-        {selectionCount > 0 &&
-         <MFooter
-            selections={selections} 
-            selectionCount={selectionCount} 
-            totalPicks={totalPicks} 
-           />}
+        
+        {selectionCount > 0 && (
+          <MFooter
+            selections={selections}
+            selectionCount={selectionCount}
+            totalPicks={totalPicks}
+          />
+        )}
       </div>
-     ))}
+    ))
+  ) : (
+    <p className="text-white leading-6 text-lg p-2">No match available</p>
+  )}
+</div>
 
- </div>
-);
-}
+  );
+};
+
 export default MatchList;

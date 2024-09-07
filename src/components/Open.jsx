@@ -18,3 +18,5 @@ function Open() {
 }
 
 export default Open
+
+// await axios.post('https://7e06-102-89-22-58.ngrok-free.app/api/bot/updateusergames', {
