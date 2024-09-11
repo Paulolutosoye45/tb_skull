@@ -1,8 +1,8 @@
 import React from 'react'
 import Flexwrapper from '../components/Flexwrapper'
-import { BiSolidChevronLeft } from 'react-icons/bi'
 import MaxWidthScreen from '../components/MaxWidthScreen'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
+import { FaArrowLeft } from 'react-icons/fa6'
 
 function ScorePage() {
     const navigate = useNavigate()
@@ -12,10 +12,12 @@ function ScorePage() {
   return (
     <div>
         <MaxWidthScreen>
-            <Flexwrapper className="p-2">
-                <BiSolidChevronLeft className=" text-4xl cursor-pointer text-white" onClick={() => handleNav()}/>
-            </Flexwrapper>
-            <h1 className='text-3xl text-white'>question and answer</h1>
+        <div className="p-4 flex items-center font-josefin font-medium my-3">
+        <FaArrowLeft className="text-2xl text-white "  onClick={handleNav}/>
+        <p className="uppercase  text-white text-center font-bold flex-grow">
+          question and answer
+        </p>
+      </div>
         </MaxWidthScreen>
     </div>
   )

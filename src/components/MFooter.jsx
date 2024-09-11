@@ -42,10 +42,12 @@ const MFooter = (props) => {
       });
     } finally {
       setLoading(false);
+      window.location.reload();
     }
   };
   
-  const handleMatches = () => {
+  const handleMatches = (event) => {
+    event.preventDefault();
     postMatch();
   };
 

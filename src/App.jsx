@@ -11,6 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Option from './Admin/Option';
 import AdminLogin from './Admin/AdminLogin';
 import TeamSelect from './Admin/TeamSelect';
+import Admindashboard from './Admin/dashboard/Admindashboard';
+import PageMin from './Admin/dashboard/PageMin';
+import MatchPanel from './Admin/MatchPanel';
 
 function App() {
     const [opening, setOpening] = useState(false);
@@ -42,13 +45,27 @@ function App() {
       element: <Board />,
     },
     {
-      path: '/admin', 
-      element: <Option />,
-    },
-    {
-      path: '/team', 
-      element: <TeamSelect />,
-    },
+      path:'admin',
+      element:<Admindashboard/>,
+      children:[
+        {
+          index: true,
+          element: <PageMin />,
+        },
+        {
+          path: 'login', 
+          element: <AdminLogin />,
+        },
+        {
+          path: 'team', 
+          element: <Option />,
+        },
+        {
+          path: 'letwin', 
+          element: <TeamSelect />,
+        },
+      ]
+    }
   ]);
   return (
     

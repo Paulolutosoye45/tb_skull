@@ -3,7 +3,7 @@ import Flexwrapper from '../components/Flexwrapper'
 
 const TeamSelect = () => {
   return (
-    <div>
+    <div className=' bg-[#213045]'>
        {/* //Match Name */}
         
       <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden min-h-screen bg-[#213045] relative">
@@ -92,7 +92,7 @@ const TeamSelect = () => {
         </div>
 
 
-        <div className='absolute bottom-0 w-full my-4 px-4'>
+        <div className='absolute md:w-auto md:left-0 md:right-0 md:mx-72 bottom-0 w-full my-4 px-4'>
         <button className="w-full bg-[#f4f4f4] border-2 text-blue-700  font-medium rounded-lg text-base capitalize px-4 py-2"> submit</button>
         </div>
       </div>

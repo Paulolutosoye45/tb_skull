@@ -1,9 +1,13 @@
 import React from "react";
-import MaxWidthScreen from "../components/MaxWidthScreen";
 import Flexwrapper from "../components/Flexwrapper";
-import { BiSolidChevronLeft } from "react-icons/bi";
-import { useNavigate } from "react-router";
+import { useNavigate, NavLink } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
+import { PiSoccerBall } from "react-icons/pi";
+import { IoStatsChartOutline } from "react-icons/io5";
+import { TbRosetteDiscountCheck } from "react-icons/tb";
+import ColFlex from "../components/ColFlex";
+import { FaArrowLeft } from "react-icons/fa6";
+import ar from "../../public/arsenal.png";
 
 function Board() {
   const navigate = useNavigate();
@@ -11,39 +15,399 @@ function Board() {
     navigate(-1);
   };
   return (
-    <div>
-      <MaxWidthScreen>
-        <Flexwrapper className="p-4">
-          <BiSolidChevronLeft
-            className="text-4xl cursor-pointer text-white"
-            onClick={() => handleNav()}
-          />
-          <h4 className="capitalize text-2xl font-medium font-Inter text-white">
-            leader board
-          </h4>
-          <div>
-            <BsPersonCircle fontSize={'2rem'} color="white" />
-          </div>
-        </Flexwrapper>
-        <div className="mx-auto px-4 font-Inter bg-white rounded-t-3xl h-[90vh] overflow-y-auto">
-            {/* <Flexwrapper className="capitalize text-white px-4 my-3  font-medium">
-                <p className="pb-3 text-left">User ID</p>
-                <p className="pb-3 text-left">City</p>
-                <p className="pb-3 text-left">Score</p>
-            </Flexwrapper> */}
-            <Flexwrapper className="font-Inter rounded-xl  transition-shadow duration-300">
-                    <p className="py-4 px-6 text-gray-800">1</p>
-                    <p className="py-2 px-6 text-gray-800">6564226982</p>
-                    <p className="py-4 px-6 text-gray-800 ">300</p>
+    <div className="bg-[#213045]">
+      <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden min-h-screen">
+        <div className="mx-auto max-w-3xl">
+          <div className="max-w-xl mx-auto">
+            <Flexwrapper className="p-4 my-3">
+              <FaArrowLeft
+                className="text-2xl cursor-pointer text-white"
+                onClick={() => handleNav()}
+              />
+              <p className="capitalize text-xl font-medium font-Inter text-white">
+                leader board
+              </p>
+              <div>
+                <BsPersonCircle fontSize={"2rem"} color="white" />
+              </div>
             </Flexwrapper>
-            <Flexwrapper className="font-Inter rounded-xl  transition-shadow duration-300">
-                    <p className="py-4 px-6 text-gray-800">2</p>
-                    <p className="py-2 px-6 text-gray-800">6564226982</p>
-                    <p className="py-4 px-6 text-gray-800 ">300</p>
-            </Flexwrapper>
-
-</div>       
-      </MaxWidthScreen>
+            <div className="mx-auto  pt-5 px-2 font-Inter bg-[#f5f6f8] rounded-t-3xl  overflow-y-auto relative min-h-screen pb-20">
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+              <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
+                <Flexwrapper className="flex items-center space-x-2">
+                  <p>1</p>
+                  <img
+                    src={ar}
+                    alt="Profile"
+                    className="w-5 h-5 rounded-full"
+                  />
+                  <p className="font-semibold">Mr. Tunde</p>
+                </Flexwrapper>
+                <p className="font-semibold">300</p>
+              </Flexwrapper>
+            </div>
+          </div>{" "}
+          <div className="fixed bottom-2 left-0 right-0 mx-4 bg-[#213045] py-2 px-3 rounded-xl shadow-lg z-10 md:mx-28 xl:mx-72 md:w-auto">
+      <Flexwrapper className="px-4 justify-between score">
+        <NavLink to="/" className="text-white">
+          <ColFlex>
+            <PiSoccerBall fontSize={"1.5rem"} className="text-[#979494] tts" />
+            <h6 className="text-xs md:text-lg capitalize font-oswald font-semibold text-[#979494]">
+              Games
+            </h6>
+          </ColFlex>
+        </NavLink>
+        <NavLink to="/score" className="text-white">
+          <ColFlex>
+            <TbRosetteDiscountCheck fontSize={"1.5rem"} className="text-[#979494] tts" />
+            <h6 className="text-xs md:text-lg capitalize font-oswald font-semibold text-[#979494]">
+              Score
+            </h6>
+          </ColFlex>
+        </NavLink>
+        <NavLink to="/dashboard" className="text-white">
+          <ColFlex>
+            <IoStatsChartOutline fontSize={"1.3rem"} className="text-[#979494] tts" />
+            <h6 className="text-xs md:text-lg capitalize font-oswald font-semibold text-[#979494]">
+              Leader
+            </h6>
+          </ColFlex>
+        </NavLink>
+        <NavLink to="/profile" className="text-white">
+          <ColFlex>
+            <BsPersonCircle fontSize={"1.5rem"} className="text-[#979494] tts" />
+            <h6 className="text-xs md:text-lg capitalize font-oswald font-semibold text-[#979494]">
+              Profile
+            </h6>
+          </ColFlex>
+        </NavLink>
+      </Flexwrapper>
+    </div>
+        </div>
+      </div>
     </div>
   );
 }

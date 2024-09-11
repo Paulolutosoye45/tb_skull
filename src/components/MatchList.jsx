@@ -14,13 +14,12 @@ const MatchList = () => {
     let updatedSelections;
     if (isSelectedmatch === team) {
       updatedSelections = selections.filter((selection) => selection.id !== id);
-      // const det = selections.map(({selectedMatch, ...rest}) => rest);
-      // // console.log(det)
-      const details = matchDetails.map(match => ({
-        ...match,
-        selectedMatch: null,
-      }));
-      console.log(details)
+  
+      const updatedMatchDetails = matchDetails.map(match => 
+        match.id === id ? { ...match, selectedMatch: null } : match
+      );
+  
+      console.log('Filtered out the selected match', updatedMatchDetails);
     } else {
       const existingSelectionIndex = selections.findIndex(
         (selection) => selection.id === id
@@ -51,8 +50,6 @@ const MatchList = () => {
     setSelections(updatedSelections);
   };
   
-  
-   
   
   const isSelected = (id, team, isSelectedmatch) => {
     let existingSelection = selections.find((selection) => selection.id === id);
@@ -93,12 +90,12 @@ const MatchList = () => {
   
 
   return (
-    <div>
+    <div className='pb-20'>
   {matchDetails.length > 0 ? (
     matchDetails.map((match) => (
       <div
         key={match.id}
-        className="m-2 rounded-xl font-Roboto bg-[#213045] shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]"
+        className="m-2 rounded-xl p-4 font-Roboto bg-[#213045] shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]"
       >
         {/* Match Name
         <Flexwrapper className="text-white text-sm font-Roboto text-center px-7 pt-2" >
@@ -145,6 +142,7 @@ const MatchList = () => {
           >
             {match.teamBCode}
           </button>
+        
         </div>
         
         {selectionCount > 0 && (
@@ -157,7 +155,7 @@ const MatchList = () => {
       </div>
     ))
   ) : (
-    <p className="text-white leading-6 text-lg p-2">No match available</p>
+    <p className="text-white leading-6 text-lg p-2 font-josefin font-bold">No match available</p>
   )}
 </div>
 

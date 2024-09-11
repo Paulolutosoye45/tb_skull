@@ -11,6 +11,7 @@ export default {
         "Nerko":[ "Nerko One", "cursive"],
         "Roboto": ["Roboto Slab", "serif"],
         "Inter": ["Inter", "sans-serif"],
+        "josefin": ["Josefin Sans", "sans-serif"],
       },
       keyframes: {
         slideInRight: {
