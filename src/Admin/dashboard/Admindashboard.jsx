@@ -1,12 +1,15 @@
-import React from 'react'
-import { Outlet } from 'react-router'
+import React from "react";
+import { Outlet } from "react-router";
+import { TeamProvider } from "../../context/teamsContext";
 
 function Admindashboard() {
   return (
-    <div className='bg-[#213045]'>
-        <Outlet/>
-    </div>
-  )
+    <TeamProvider>
+      <div className="bg-[#213045]">
+        <Outlet />
+      </div>
+    </TeamProvider>
+  );
 }
 
-export default Admindashboard
+export default Admindashboard;

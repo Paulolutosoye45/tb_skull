@@ -3,28 +3,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Roboto+Slab:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Italiana&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body {
+  background-color: #202f44;
+}
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .team a.active h6,
 .team a.active .tt {
   color: #213045;
 }
+
 .score a.active h6,
 .score a.active .tts {
   color: white;
 }
+
 /* .score .tts,
 .score h6 {
   color:rgba(248, 99, 99, 0.866);
 } */
+
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 4s ease infinite;
+}
+
+.custom-select {
+  font-size: 12px;
+  height: 20px;
+  max-height: 28px;
+  overflow-y: auto;
+}
+
+.glass {
+  background: rgba(186, 186, 225, 0.2);
+  /* opacity: 0.6; */
+  /* border-radius:3px */
+  /* border: 1px solid rgba(255, 255, 255, .2); */
+  /* border-right: 2px solid rgba(255, 255, 255, .2);
+  border-bottom: 2px solid rgba(255, 255, 255, .2); */
+  backdrop-filter: blur(10px);
+}

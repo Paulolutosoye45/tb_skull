@@ -79,7 +79,7 @@ const Profile = () => {
             <h1 className="uppercase text-base  text-white mb-2">Name</h1>
             <div className="border-b-2 flex justify-between items-center cursor-pointer pb-2">
               <p className="text-yellow-400  font-oswald text-base">
-                {users?.name}ihr4uyewjfue
+                {users?.name}
               </p>
             </div>
           </div>

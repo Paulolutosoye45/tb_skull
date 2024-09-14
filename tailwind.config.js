@@ -12,6 +12,8 @@ export default {
         "Roboto": ["Roboto Slab", "serif"],
         "Inter": ["Inter", "sans-serif"],
         "josefin": ["Josefin Sans", "sans-serif"],
+        "Italianno": ["Italianno", "cursive"],
+        "Inconsolata":["Inconsolata", "monospace"],
       },
       keyframes: {
         slideInRight: {

@@ -5,25 +5,25 @@ import UserContext from '../context/UserContext';
 import axios from 'axios';
 
 const MFooter = (props) => {
-  const { selections, selectionCount, totalPicks } = props;
+  const { selections, setSelections } = props;
   const [loading, setLoading] = useState(false);
   const { users } = useContext(UserContext);
-  
+ 
   const userIID = users?.userId;
-  
+ 
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, '0');
   const day = String(today.getDate()).padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
-  
+
   const selectedMatches = selections;
   const postMatch = async () => {
     setLoading(true);
     try {
       const response = await axios.post('https://1247-102-88-82-150.ngrok-free.app/api/bot/updateusergames', {
         userId: userIID,
-        userName: 'named',
+        userName: users?.name,
         currentDate: formattedDate,
         selectedMatches,
       });
@@ -33,6 +33,7 @@ const MFooter = (props) => {
         bodyClassName: 'text-white font-Roboto',
         progressClassName: 'bg-[#213045]',
       });
+      setSelections([])
     } catch (error) {
       console.error('Error posting data:', error.response || error.message);
       toast.error('Failed to update user games.',  {
@@ -42,13 +43,18 @@ const MFooter = (props) => {
       });
     } finally {
       setLoading(false);
-      window.location.reload();
     }
   };
-  
+  function displayHello() {
+   
+  }
+
+
+
   const handleMatches = (event) => {
     event.preventDefault();
     postMatch();
+    // window.location.reload();
   };
 
   return (
@@ -56,7 +62,7 @@ const MFooter = (props) => {
       <div className="bg-yellow-300 w-20 aspect-auto fixed bottom-20 -right-4 py-2 px-2 rounded-md font-mono transition-all animate-slideInRight cursor-pointer">
         <div className="relative">
           <div className="absolute -top-6 -left-6 bg-red-700 h-10 text-center px-4 py-2 text-white rounded-full text-base font-bold">
-            {selectionCount}
+            {selections.length}
           </div>
           <div className='h-10'>
           {loading ? (

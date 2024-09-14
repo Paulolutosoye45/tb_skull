@@ -10,6 +10,7 @@ import turklg from "../../public/access/Turkishs.jpg";
 import Serlg from "../../public/access/Seria.png";
 import teamsContext from "../context/teamsContext";
 import MatchPanel from "./MatchPanel";
+import { toast } from "react-toastify";
 
 const teamEmberm = [
   // { id: "champion league", teamLogo: ucl3 },
@@ -78,8 +79,8 @@ const Modal = ({ openModal, handleTeamName, leagues }) =>
           leagues.map((items) => (
             <li
               key={items.id}
-              className="text-white capitalize text-base font-Roboto bg-yellow-500 p-3 rounded-lg mb-2 text-center transition-colors duration-300 ease-in-out hover:bg-yellow-400"
-              onClick={() => handleTeamName(items.id,items.teamName)}
+              className="text-white  hover:text-yellow-400  capitalize text-base font-Roboto bg-gray-800 p-3 rounded-lg mb-2 text-center transition-colors duration-300 ease-in-out"
+              onClick={() => handleTeamName(items.id, items.teamName)}
             >
               {items.teamName}
             </li>
@@ -89,9 +90,8 @@ const Modal = ({ openModal, handleTeamName, leagues }) =>
     </div>
   );
 const Option = () => {
-  const { teamLeague} = useContext(teamsContext);
+  const { teamLeague } = useContext(teamsContext);
 
-  // Consolidated state
   const [state, setState] = useState({
     openModal: false,
     openModal2: false,
@@ -104,10 +104,27 @@ const Option = () => {
   const [leaguesClubs, setLeaguesClubs] = useState([]);
   const [ClubsA, setClubsA] = useState({});
   const [ClubsB, setClubsB] = useState({});
+  const [hrs, setHrs] = useState();
+  const [min, setMin] = useState();
   const [show, setShow] = useState(false);
+  const [timeError, setTimeError] = useState(false);
 
   const divRef = useRef(null);
 
+  const handleChangehrs = (e) => {
+    const re = /^\d{0,2}$/;
+    
+    if (e.target.value === "" || re.test(e.target.value)) {
+      setHrs(e.target.value);
+    }
+  };
+  const handleChangeMin = (e) => {
+    const re = /^\d{0,2}$/;
+    
+    if (e.target.value === "" || re.test(e.target.value)) {
+      setMin(e.target.value);
+    }
+  };
   const handleLeague = (clickedId) => {
     setState((prevState) => ({
       ...prevState,
@@ -115,19 +132,21 @@ const Option = () => {
       leagues: teamLeague[clickedId] || [],
     }));
   };
+
   const handleTeamName = (id, tName) => {
     setState((prevState) => ({
       ...prevState,
       teamDisplay: tName,
       openModal: false,
     }));
-  
-     setClubsA((prevClubsA) => ([{
-      'id': id,
-        'cts': tName
-    }]));
+
+    setClubsA((prevClubsA) => [
+      {
+        id: id,
+        cts: tName,
+      },
+    ]);
   };
-  
 
   const handleLeagueB = (clickedId) => {
     setState((prevState) => ({
@@ -144,12 +163,13 @@ const Option = () => {
       openModal2: false,
     }));
 
-    setClubsB((prevClubsA) => ([{
-      ...prevClubsA,
-        'id': id,
-        'cts': tName
-
-    }]));
+    setClubsB((prevClubsA) => [
+      {
+        ...prevClubsA,
+        id: id,
+        cts: tName,
+      },
+    ]);
   };
 
   const toggleModal = () => {
@@ -168,87 +188,124 @@ const Option = () => {
   const setClubsyet = () => {
     if (Object.keys(ClubsA).length > 0 && Object.keys(ClubsB).length > 0) {
       setLeaguesClubs((prev) => {
-        if (!prev.some(club => 
-            JSON.stringify(club.ClubsA) === JSON.stringify(ClubsA) &&
-            JSON.stringify(club.ClubsB) === JSON.stringify(ClubsB)
-        )) {
-          return [...prev,  {idT:crypto.randomUUID(),teamA:ClubsA, teamB:ClubsB} ];
+        if (
+          !prev.some(
+            (club) =>
+              JSON.stringify(club.ClubsA) === JSON.stringify(ClubsA) &&
+              JSON.stringify(club.ClubsB) === JSON.stringify(ClubsB)
+          )
+        ) {
+          return [
+            ...prev,
+            { idT: crypto.randomUUID(), teamA: ClubsA, teamB: ClubsB, hrs, min },
+          ];
         }
         return prev;
       });
-      setShow(true)
+      setShow(true);
       // console.log(leaguesClubs);
     } else {
       console.log("ClubsA or ClubsB is empty. Cannot add to leaguesClubs.");
-      console.log(ClubsA, 'from A');
-      console.log(ClubsB, 'from B');
+      toast.error("team A or team B is empty. Cannot add empty value", {
+        className: "bg-[#06f6ad ] text-white",
+        bodyClassName: "text-[#ff0000] font-Roboto",
+        progressClassName: "bg-[#FF0000]",
+      });
     }
-  };
-  
+  }; 
+
 
   const handleClubs = () => {
-  setClubsyet();  
-};
-
- 
+    if(!min  || !hrs) {
+      setTimeError(true)
+      return;
+    }
+    setClubsyet();
+  };
   return (
     <div>
-   {!show ? (
-    <div className="bg-[#213045]">
-        <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden bg-[#213045] min-h-screen">
+      {!show ? (
+        <div className="bg-[#213045]">
+          <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden bg-[#213045] min-h-screen">
             <div className="mx-auto max-w-2xl">
-                <div className="p-4">
-                    <h2 className="text-white capitalize font-oswald font-medium text-2xl m-4 ml-2">
-                        team a
-                    </h2>
-                    <TeamSelection
-                        isDarkened={state.isDarkened}
-                        onSelect={handleLeague}
-                        teamDisplay={state.teamDisplay}
-                        setOpenModal={toggleModal} // Updated to use the toggle function
+              <div className="p-4">
+                <h2 className="text-white capitalize font-oswald font-medium text-2xl m-4 ml-2">
+                  team a
+                </h2>
+                <TeamSelection
+                  isDarkened={state.isDarkened}
+                  onSelect={handleLeague}
+                  teamDisplay={state.teamDisplay}
+                  setOpenModal={toggleModal} // Updated to use the toggle function
+                />
+                <Modal
+                  openModal={state.openModal}
+                  handleTeamName={handleTeamName}
+                  leagues={state.leagues}
+                />
+              </div>
+              <div className="p-4">
+                <h2 className="text-white capitalize font-oswald font-medium text-2xl m-4 ml-2">
+                  team b
+                </h2>
+                <TeamSelection
+                  isDarkened={state.isDarkened2}
+                  onSelect={handleLeagueB}
+                  teamDisplay={state.teamDisplay2}
+                  setOpenModal={toggleModal2} // Updated to use the toggle function
+                />
+                <Modal
+                  openModal={state.openModal2}
+                  handleTeamName={handleTeamNameB}
+                  leagues={state.leagues}
+                />
+              </div>
+              <div className="flex items-center gap-2 py-4 px-3">
+                <div className="flex items-center gap-2">
+                  <p className="text-white capitalize font-josefin">time:</p>
+                  <div className="flex flex-col gap-1">
+                    <p className="text-xs text-center text-white">Hrs</p>
+                    <input
+                      type="text"
+                      value={hrs}
+                      onChange={handleChangehrs}
+                      className="w-20 outline-none border-none rounded-md text-center bg-gray-800 text-white px-2 py-2 shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:scale-105"
                     />
-                    <Modal
-                        openModal={state.openModal}
-                        handleTeamName={handleTeamName}
-                        leagues={state.leagues}
-                    />
+                  </div>
                 </div>
-                <div className="p-4">
-                    <h2 className="text-white capitalize font-oswald font-medium text-2xl m-4 ml-2">
-                        team b
-                    </h2>
-                    <TeamSelection
-                        isDarkened={state.isDarkened2}
-                        onSelect={handleLeagueB}
-                        teamDisplay={state.teamDisplay2}
-                        setOpenModal={toggleModal2} // Updated to use the toggle function
+                <p className="text-white text-xl">:</p>
+                <div className="flex items-center gap-2">
+                  <div className="flex flex-col gap-1">
+                    <p className="text-xs text-center text-white">Min</p>
+                    <input
+                      type="text"
+                      value={min}
+                      onChange={handleChangeMin}
+                      className="w-20 outline-none border-none rounded-md text-center bg-gray-800 text-white px-2 py-2 shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:scale-105"
                     />
-                    <Modal
-                        openModal={state.openModal2}
-                        handleTeamName={handleTeamNameB}
-                        leagues={state.leagues}
-                    />
+                  </div>
                 </div>
-                <div className="mx-auto my-7 w-3/4 md:w-6/12">
-                    <button
-                        className="w-full bg-[#f4f4f4] border-2 text-blue-700 font-medium rounded-lg text-base capitalize px-4 py-2"
-                        onClick={handleClubs}
-                    >
-                        continue
-                    </button>
-                </div>
+              </div>
+               {timeError ? (<p className="text-red-800 p-4 text-xl font-oswald ">time is required *</p>) : null}
+
+              <div className="mx-auto my-7 w-3/4 md:w-6/12">
+                <button
+                  className="w-full bg-[#f4f4f4] border-2 text-blue-700 font-medium rounded-lg text-base capitalize px-4 py-2"
+                  onClick={handleClubs}
+                >
+                  continue
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-) : (
-  <MatchPanel 
-  leaguesClubs={leaguesClubs} 
-  setShow={setShow}
-  setLeaguesClubs={setLeaguesClubs}
-/>
-
-)}
-
+      ) : (
+        <MatchPanel
+          leaguesClubs={leaguesClubs}
+          setShow={setShow}
+          setLeaguesClubs={setLeaguesClubs}
+        />
+      )}
     </div>
   );
 };

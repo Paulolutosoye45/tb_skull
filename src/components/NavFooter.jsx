@@ -5,11 +5,13 @@ import { TbRosetteDiscountCheck } from "react-icons/tb";
 import { BsPersonCircle } from "react-icons/bs";
 import Flexwrapper from "./Flexwrapper";
 import { Link, NavLink } from "react-router-dom";
+import { BsFillPatchQuestionFill } from "react-icons/bs"
+import { TfiViewListAlt } from "react-icons/tfi";
 import ColFlex from "./ColFlex";
 
 const NavFooter = () => {
   return (
-    <div className="fixed bottom-2 left-0 right-0 mx-4 bg-[#213045] py-2 px-3 rounded-xl shadow-lg z-10 md:mx-28 xl:mx-72 md:w-auto">
+    <div className="fixed bottom-2 left-0 right-0 mx-4 bg-white py-2 px-3 rounded-xl shadow-lg z-10 md:mx-28 xl:mx-72 md:w-auto">
       <div className="bg-white py-2 px-3 w-full rounded-xl transition-all font-Roboto">
         <Flexwrapper className="px-4 md:px-8 justify-between team">
           <NavLink to="/">
@@ -23,17 +25,17 @@ const NavFooter = () => {
               </h6>
             </ColFlex>
           </NavLink>
-          <NavLink to="/score">
+          <Link>
             <ColFlex>
-              <TbRosetteDiscountCheck
+              <BsFillPatchQuestionFill
                 fontSize={"1.5rem"}
                 className="text-[#979494] md:text-[1.9rem] tt"
               />
               <h6 className="text-xs md:text-lg capitalize font-oswald font-semibold text-[#979494]">
-                Score
+                q/a
               </h6>
             </ColFlex>
-          </NavLink>
+          </Link>
           <NavLink to="/dashboard">
             <ColFlex>
               <IoStatsChartOutline
@@ -53,6 +55,17 @@ const NavFooter = () => {
               />
               <h6 className="text-xs md:text-lg capitalize font-oswald font-semibold text-[#979494]">
                 Profile
+              </h6>
+            </ColFlex>
+          </NavLink>
+          <NavLink to="/tasks">
+            <ColFlex>
+              <TfiViewListAlt 
+                fontSize={"1.5rem"}
+                className="text-[#979494] md:text-[1.9rem tt"
+              />
+              <h6 className="text-xs md:text-lg capitalize font-oswald font-semibold text-[#979494]">
+                Tasks
               </h6>
             </ColFlex>
           </NavLink>

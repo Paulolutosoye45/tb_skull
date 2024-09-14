@@ -14,6 +14,10 @@ import TeamSelect from './Admin/TeamSelect';
 import Admindashboard from './Admin/dashboard/Admindashboard';
 import PageMin from './Admin/dashboard/PageMin';
 import MatchPanel from './Admin/MatchPanel';
+import ErrorPage from './pages/Errorpage';
+import NotFound from './pages/NotFound';
+import SimpleForm from './Admin/show';
+import Task from './pages/Task';
 
 function App() {
     const [opening, setOpening] = useState(false);
@@ -30,7 +34,8 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />
+      element: <Home />,
+       errorElement:<ErrorPage/>
     },
     {
       path: '/profile', 
@@ -43,6 +48,10 @@ function App() {
     {
       path: '/dashboard', 
       element: <Board />,
+    },
+    {
+      path: '/tasks', 
+      element: <Task />,
     },
     {
       path:'admin',
@@ -61,16 +70,21 @@ function App() {
           element: <Option />,
         },
         {
-          path: 'letwin', 
+          path: 'updatematch', 
           element: <TeamSelect />,
         },
       ]
+    },
+    {
+      path:"*",
+      element: <NotFound/>
     }
   ]);
   return (
     
     <>
       {opening ? <RouterProvider router={router} /> : <Open />}
+      {/* <SimpleForm /> */}
       <ToastContainer />
     </>
   );
