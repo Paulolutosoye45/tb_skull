@@ -11,17 +11,16 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [matchDetails, setMatchDetails] = useState([]);
   const [referralCode, setReferralCode] = useState(null);
-  
   // Retrieve user ID from session
   const userVar = retrieveUserIdFromSession();
 
   const fetchData = async (userIds) => {
     const userId = userVar || userIds;
     try {
-      const response = await axios.post('https://1247-102-88-82-150.ngrok-free.app/api/bot/usergames', {
+      const response = await axios.post(`${import.meta.env.VITE_APP_API_URL}/bot/usergames`, {
         userId,
       });
-
+     
       const result = response.data;
       setUsers(result);
       setMatchDetails(result.matchDetails || []);

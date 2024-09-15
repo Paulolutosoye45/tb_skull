@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Flexwrapper from "../components/Flexwrapper";
 import { useNavigate, NavLink, Link } from "react-router-dom";
 import { BsFillPatchQuestionFill, BsPersonCircle } from "react-icons/bs";
@@ -34,7 +34,7 @@ function Board() {
                 <BsPersonCircle fontSize={"2rem"} color="white" />
               </div>
             </Flexwrapper>
-            <div className="mx-auto  pt-5 px-2 font-Inter bg-[#f5f6f8] rounded-t-3xl  overflow-y-auto relative min-h-screen pb-24">
+            {/* <div className="mx-auto  pt-5 px-2 font-Inter bg-[#f5f6f8] rounded-t-3xl  overflow-y-auto relative min-h-screen pb-24">
               <Flexwrapper className="font-josefin rounded-xl transition-shadow duration-300    p-4 my-2 shadow-[0px_6px_10px_rgba(0,0,0,0.3),0_2px_3px_rgba(0,0,0,0.25)]">
                 <Flexwrapper className="flex items-center space-x-2">
                   <p>1</p>
@@ -415,7 +415,7 @@ function Board() {
             </h6>
           </ColFlex>
         </NavLink>
-      </Flexwrapper>
+      </Flexwrapper> */}
     </div>
         </div>
       </div>

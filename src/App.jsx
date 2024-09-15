@@ -18,6 +18,7 @@ import ErrorPage from './pages/Errorpage';
 import NotFound from './pages/NotFound';
 import SimpleForm from './Admin/show';
 import Task from './pages/Task';
+import ViewMatch from './Admin/match/ViewMatch';
 
 function App() {
     const [opening, setOpening] = useState(false);
@@ -72,6 +73,10 @@ function App() {
         {
           path: 'updatematch', 
           element: <TeamSelect />,
+        },
+        {
+          path: 'viewmatches', 
+          element: <ViewMatch />,
         },
       ]
     },

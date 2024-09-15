@@ -21,7 +21,7 @@ const MFooter = (props) => {
   const postMatch = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('https://1247-102-88-82-150.ngrok-free.app/api/bot/updateusergames', {
+      const response = await axios.post(`${import.meta.env.VITE_APP_API_URL}/bot/updateusergames`, {
         userId: userIID,
         userName: users?.name,
         currentDate: formattedDate,

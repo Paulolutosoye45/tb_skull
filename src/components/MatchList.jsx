@@ -46,7 +46,7 @@ const MatchList = () => {
     <div className='pb-24'>
       {matchDetails.length > 0 ? (
         matchDetails.map((match) => (
-          <MatchItem match={match} pastMatchTimes={pastMatchTimes} handleChange={handleChange} handleRemove={handleRemove} />
+          <MatchItem match={match} pastMatchTimes={pastMatchTimes} handleChange={handleChange} handleRemove={handleRemove} key={match.id} />
         ))
       ) : (
         <p className="text-white leading-6 text-lg p-2 font-josefin font-bold">No match available</p>

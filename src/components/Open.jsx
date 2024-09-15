@@ -1,9 +1,8 @@
 import React from 'react'
-import Load from '../../public/Load.jpg'
 
 function Open() {
   return (
-    <div className="h-screen bg-[url('../../public/bg-2.jpg')] bg-cover bg-center bg-no-repeat">
+    <div className={`h-screen bgicon bg-cover bg-center bg-no-repeat`}>
     <div className="h-full w-full flex flex-col justify-center items-center bg-black bg-opacity-40 text-white">
         <div role="status">
             <svg aria-hidden="true" className="w-20 text-gray-200 animate-spin fill-[#fff]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,5 +18,3 @@ function Open() {
 }
 
 export default Open
-
-// await axios.post('https://7e06-102-89-22-58.ngrok-free.app/api/bot/updateusergames', {

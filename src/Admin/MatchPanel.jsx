@@ -37,7 +37,7 @@ const MatchPanel = ({ leaguesClubs, setShow, setLeaguesClubs }) => {
 
     try {
       const response = await axios.post(
-        "https://1247-102-88-82-150.ngrok-free.app/api/admin/creatematch",
+        `${import.meta.env.VITE_APP_API_URL}/admin/creatematch`,
         {
           matchDate: today,
           createMatches: matches,

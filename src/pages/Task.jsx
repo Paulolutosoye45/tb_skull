@@ -2,8 +2,8 @@ import React from "react";
 import MaxWidthScreen from "../components/MaxWidthScreen";
 import { FaArrowLeft } from "react-icons/fa6";
 import ColFlex from "../components/ColFlex";
-import tele from "../../public/Telegram-icon.png";
-import X from "../../public/X.avif";
+import tele from "../../public/access/Telegram-icon.png";
+import X from "../../public/access/X.avif";
 import { FaChevronRight } from "react-icons/fa6";
 
 function Task() {

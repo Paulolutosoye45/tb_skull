@@ -5,7 +5,7 @@ import { TeamProvider } from "../../context/teamsContext";
 function Admindashboard() {
   return (
     <TeamProvider>
-      <div className="bg-[#213045]">
+      <div className="bg-gray-900">
         <Outlet />
       </div>
     </TeamProvider>

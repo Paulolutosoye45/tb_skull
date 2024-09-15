@@ -6,7 +6,7 @@ import ucl3 from "../../public/access/ucl3.png";
 import la_Liga from "../../public/access/la-liga-logo.jpg";
 import pllp from "../../public/access/Premier-League-logo.png";
 import frenlg from "../../public/access/french.png";
-import turklg from "../../public/access/Turkishs.jpg";
+import turklg from "../../public/access/Turkishs.png";
 import Serlg from "../../public/access/Seria.png";
 import teamsContext from "../context/teamsContext";
 import MatchPanel from "./MatchPanel";
@@ -286,7 +286,7 @@ const Option = () => {
                   </div>
                 </div>
               </div>
-               {timeError ? (<p className="text-red-800 p-4 text-xl font-oswald ">time is required *</p>) : null}
+               {timeError ? (<p className="text-red-800  px-4 font-medium text-xl font-oswald ">time is required *</p>) : null}
 
               <div className="mx-auto my-7 w-3/4 md:w-6/12">
                 <button

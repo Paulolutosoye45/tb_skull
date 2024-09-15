@@ -9,9 +9,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
-  background-color: #202f44;
-}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -73,4 +71,7 @@ body {
   /* border-right: 2px solid rgba(255, 255, 255, .2);
   border-bottom: 2px solid rgba(255, 255, 255, .2); */
   backdrop-filter: blur(10px);
+}
+.bgicon {
+  background-image: url(../../public/access/bg-2.png);
 }
