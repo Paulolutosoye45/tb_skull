@@ -25,7 +25,7 @@ const MatchItem = ({ match, pastMatchTimes, handleChange, handleRemove }) => {
   return (
     <div
       key={match.id}
-      className="m-2 rounded-xl p-4 font-Roboto bg-[#213045] shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]"
+      className="m-2 rounded-xl py-4 font-Roboto bg-[#213045] shadow-[0_10px_20px_rgba(0,0,0,0.3),0_6px_6px_rgba(0,0,0,0.25)]"
     >
       <div className="flex items-center justify-between px-4 py-2  gap-6">
         <button
@@ -62,9 +62,9 @@ const MatchItem = ({ match, pastMatchTimes, handleChange, handleRemove }) => {
         </button>
       </div>
       <Flexwrapper className="text-white text-xs  text-center  font-Inconsolata px-7 truncate ">
-        <p className="truncate">{match.teamAName} </p>
+        <p className="truncate w-16">{match.teamAName} </p>
         <p className="truncate text-yellow-600 text-lg">Vs</p>
-        <p className="truncate">{match.teamBName}</p>
+        <p className="truncate w-16">{match.teamBName}</p>
       </Flexwrapper>
     </div>
   );

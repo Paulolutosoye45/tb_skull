@@ -11,6 +11,8 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [matchDetails, setMatchDetails] = useState([]);
   const [referralCode, setReferralCode] = useState(null);
+  const [arrLeaderBoard, setArrLeaderBoard]= useState([])
+  const [arrMonthly, setArrMonthly]=useState([])
   // Retrieve user ID from session
   const userVar = retrieveUserIdFromSession();
 
@@ -24,6 +26,8 @@ export const UserProvider = ({ children }) => {
       const result = response.data;
       setUsers(result);
       setMatchDetails(result.matchDetails || []);
+      setArrLeaderBoard(result.leaderboards || []);
+      setArrMonthly(result.monthlyLeaderboards || []);
     } catch (error) {
       console.error('Error fetching data:', error.response || error.message);
     }
@@ -57,6 +61,8 @@ export const UserProvider = ({ children }) => {
     setMatchDetails,
     referralCode,
     setReferralCode,
+    arrLeaderBoard,
+    arrMonthly
   };
 
   return (

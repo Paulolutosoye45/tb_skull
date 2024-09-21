@@ -36,7 +36,7 @@ const Home = () => {
         <Flexwrapper className="gap-2 ">
           {/* <button className="flex justify-center items-center bg-red-900 rounded-3xl text-white pr-3 "><BiDollarCircle  fontSize={'1.7rem'}  color='f9e05f' className="mr-2"/> <p className="text-sm">30.23</p></button> */}
           <button className="rounded-xl bg-[#d4fd00] px-3 py-1  text-base subpixel-antialiased font-medium font-josefin text-[#213045] hover:opacity-60 border-0 outline-0">
-            {referralCode}
+          {users?.name}
           </button>
           <Link to="profile" className="cursor-pointer">
             <BsPersonCircle fontSize={"1.8rem"}  />

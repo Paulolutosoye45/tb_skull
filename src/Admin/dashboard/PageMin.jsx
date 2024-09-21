@@ -41,12 +41,12 @@ function PageMin() {
           </div> */}
 
           <div className="m-4">
-            <h1 className="text-[3rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 transition-all duration-500 hover:bg-gradient-to-l capitalize animate-gradient">
+            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 transition-all duration-500 hover:bg-gradient-to-l capitalize animate-gradient">
               welcome admin
             </h1>
           </div>
 
-          <div className="grid grid-cols-1 divide-y divide-gray-600 text-center rounded-xl border-2 border-gray-600 mx-2 bg-gray-800 shadow-lg my-16">
+          <div className="grid grid-cols-1 divide-y divide-gray-600 text-center rounded-xl border-2 border-gray-600 mx-3 bg-gray-800 shadow-lg my-16">
             <div className="text-white font-Roboto text-2xl font-bold capitalize p-6 hover:bg-gray-700 transition duration-300 ease-in-out rounded-t-xl">
               <Link to='/admin/team' className="hover:text-yellow-400">create match</Link>
             </div>
@@ -56,11 +56,19 @@ function PageMin() {
             <div className="text-white font-Roboto text-2xl font-bold capitalize p-6 hover:bg-gray-700 transition duration-300 ease-in-out rounded-b-xl">
               <Link to='/admin/updatematch' className="hover:text-yellow-400">update match</Link>
             </div>
+            <div className="text-white font-Roboto text-2xl font-bold capitalize p-6 hover:bg-gray-700 transition duration-300 ease-in-out rounded-b-xl">
+          <Link  to="/admin/questions" className="hover:text-yellow-400">question and answer </Link>  
+            </div>
+            <div className="text-white font-Roboto text-2xl font-bold capitalize p-6 hover:bg-gray-700 transition duration-300 ease-in-out rounded-b-xl">
+          <Link  to="/admin/addclub" className="hover:text-yellow-400">can't find team </Link>  
+            </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  );8
 }
+
+
 
 export default PageMin;

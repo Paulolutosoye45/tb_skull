@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import Open from './components/Open';
 import { useEffect, useState, useContext } from 'react';
 import Profile from './pages/Profile';
-import ScorePage from './pages/ScorePage';
 import Board from './pages/Board';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,6 +18,10 @@ import NotFound from './pages/NotFound';
 import SimpleForm from './Admin/show';
 import Task from './pages/Task';
 import ViewMatch from './Admin/match/ViewMatch';
+import QuestionPage from './pages/QuestionsPage';
+import AddClubs from './Admin/AddClubs';
+import AdminErrorPage from './Admin/AdminErrorpage';
+import Question from './Admin/Question';
 
 function App() {
     const [opening, setOpening] = useState(false);
@@ -43,8 +46,8 @@ function App() {
       element: <Profile />,
     },
     {
-      path: '/score', 
-      element: <ScorePage />,
+      path: '/question', 
+      element: <QuestionPage />,
     },
     {
       path: '/dashboard', 
@@ -57,6 +60,7 @@ function App() {
     {
       path:'admin',
       element:<Admindashboard/>,
+      errorElement:<AdminErrorPage/>,
       children:[
         {
           index: true,
@@ -71,12 +75,20 @@ function App() {
           element: <Option />,
         },
         {
-          path: 'updatematch', 
+          path: 'viewmatches', 
           element: <TeamSelect />,
         },
         {
-          path: 'viewmatches', 
+          path: 'updatematch', 
           element: <ViewMatch />,
+        },
+        {
+          path: 'addclub', 
+          element: <AddClubs />,
+        },
+        {
+          path: 'questions', 
+          element: <Question  />,
         },
       ]
     },

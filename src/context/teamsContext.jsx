@@ -16,18 +16,20 @@ export const TeamProvider = ({ children }) => {
       setTeamLeague(teamResult.teams);
     } catch (error) {
       console.error('Error fetching data:', error.response || error.message);
+      console.log(error.response )
     }
   };
-
+  
   useEffect(() => {
     fetchTeams();
   }, []);
-
+    
   const LeagueContext = {
     teamLeague,
     seeClubs,
     setseeClubs,
   };
+  // console.log(teamLeague.Others)
 
   return (
     <TeamContext.Provider value={LeagueContext}>

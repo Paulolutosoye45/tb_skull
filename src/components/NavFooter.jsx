@@ -11,9 +11,9 @@ import ColFlex from "./ColFlex";
 
 const NavFooter = () => {
   return (
-    <div className="fixed bottom-2 left-0 right-0 mx-4 bg-white py-2 px-3 rounded-xl shadow-lg z-10 md:mx-28 xl:mx-72 md:w-auto">
+    <div className="fixed bottom-4 left-0 right-0 mx-4 bg-white py-1 px-3 rounded-xl shadow-lg z-10 md:mx-28 xl:mx-72 md:w-auto">
       <div className="bg-white py-2 px-3 w-full rounded-xl transition-all font-Roboto">
-        <Flexwrapper className="px-4 md:px-8 justify-between team">
+        <Flexwrapper className=" md:px-8 justify-between team">
           <NavLink to="/">
             <ColFlex>
               <PiSoccerBall
@@ -25,7 +25,7 @@ const NavFooter = () => {
               </h6>
             </ColFlex>
           </NavLink>
-          <Link>
+          <NavLink to="/question">
             <ColFlex>
               <BsFillPatchQuestionFill
                 fontSize={"1.5rem"}
@@ -35,7 +35,7 @@ const NavFooter = () => {
                 q/a
               </h6>
             </ColFlex>
-          </Link>
+          </NavLink>
           <NavLink to="/dashboard">
             <ColFlex>
               <IoStatsChartOutline

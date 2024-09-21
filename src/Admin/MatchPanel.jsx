@@ -65,7 +65,7 @@ const MatchPanel = ({ leaguesClubs, setShow, setLeaguesClubs }) => {
   };
 
   useEffect(() => {
-    console.log(matches);
+    // console.log(matches);
   }, [matches]);
   return (
     <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden bg-[#213045] min-h-screen">

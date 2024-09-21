@@ -6,19 +6,22 @@ import ucl3 from "../../public/access/ucl3.png";
 import la_Liga from "../../public/access/la-liga-logo.jpg";
 import pllp from "../../public/access/Premier-League-logo.png";
 import frenlg from "../../public/access/french.png";
-import turklg from "../../public/access/Turkishs.png";
+import German from "../../public/access/German.png";
 import Serlg from "../../public/access/Seria.png";
+import pencil_ball from "../../public/access/pencil_ball.png";
 import teamsContext from "../context/teamsContext";
 import MatchPanel from "./MatchPanel";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const teamEmberm = [
   // { id: "champion league", teamLogo: ucl3 },
   { id: "Laliga", teamLogo: la_Liga },
   { id: "PremierShip", teamLogo: pllp },
   { id: "FrenchLeague", teamLogo: frenlg },
-  { id: "TurkishLeague", teamLogo: turklg },
+  { id: "Bundesliga", teamLogo: German, },
   { id: "SeriaA", teamLogo: Serlg },
+  { id: "Others", teamLogo: pencil_ball },
 ];
 
 const TeamSelection = ({ isDarkened, onSelect, teamDisplay, setOpenModal }) => (
@@ -28,17 +31,20 @@ const TeamSelection = ({ isDarkened, onSelect, teamDisplay, setOpenModal }) => (
         <div
           className={`flex-shrink-0 w-20 h-20 ${
             isDarkened === teamIcons.id ? "opacity-100" : "opacity-50"
-          }`}
+          } `}
           key={index}
           onClick={() => onSelect(teamIcons.id)}
         >
           <img
             src={teamIcons.teamLogo}
-            className="w-full h-full object-cover rounded-lg"
-            alt=""
+            className={`w-full h-full object-cover rounded-lg ${
+              teamIcons.id === "question" ? "" : "" // Add custom background for "question"
+            }`}
+            alt={teamIcons.id}
           />
+
         </div>
-      ))}
+         ))}
     </div>
     <h2 className="text-white capitalize font-oswald font-medium text-2xl m-2 ml-2 mb-3">
       select team
@@ -68,7 +74,7 @@ const TeamSelection = ({ isDarkened, onSelect, teamDisplay, setOpenModal }) => (
 );
 
 const Modal = ({ openModal, handleTeamName, leagues }) =>
-  openModal && (
+   openModal &&  (
     <div className="border-2 rounded-lg my-5 w-full h-52 md:h-40 overflow-x-auto scrollbar-hide">
       <ul className="cursor-pointer list-none p-0">
         {leagues.length === 0 ? (
@@ -108,8 +114,17 @@ const Option = () => {
   const [min, setMin] = useState();
   const [show, setShow] = useState(false);
   const [timeError, setTimeError] = useState(false);
+  const [loading, setloading] = useState(true);
 
   const divRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setloading(false)
+      teamLeague
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChangehrs = (e) => {
     const re = /^\d{0,2}$/;
@@ -125,13 +140,29 @@ const Option = () => {
       setMin(e.target.value);
     }
   };
+
   const handleLeague = (clickedId) => {
-    setState((prevState) => ({
-      ...prevState,
-      isDarkened: clickedId === prevState.isDarkened ? null : clickedId,
-      leagues: teamLeague[clickedId] || [],
-    }));
+    try {
+      if (!teamLeague || teamLeague === null) {
+        throw new Error("Team league data is not available.");
+      }
+  
+      setState((prevState) => ({
+        ...prevState,
+        isDarkened: clickedId === prevState.isDarkened ? null : clickedId,
+        leagues: teamLeague[clickedId] || [], // Ensuring fallback for undefined teamLeague
+      }));
+    } catch (error) {
+      console.error("Error in handleLeague:", error);
+      toast.error("an error occur Please try again later.", {
+        className: "bg-[#06f6ad] text-white",
+        bodyClassName: "text-white font-Roboto",
+        progressClassName: "bg-[#FF0000]",
+      });
+      // You can also display this message in a more user-friendly way in the UI, like a toast notification
+    }
   };
+  
 
   const handleTeamName = (id, tName) => {
     setState((prevState) => ({
@@ -149,11 +180,24 @@ const Option = () => {
   };
 
   const handleLeagueB = (clickedId) => {
+    try {
+      if (!teamLeague || teamLeague === null) {
+        throw new Error("Team league data is not available.");
+      }
     setState((prevState) => ({
       ...prevState,
       isDarkened2: clickedId === prevState.isDarkened2 ? null : clickedId,
       leagues: teamLeague[clickedId] || [],
     }));
+  } catch (error) {
+    console.error("Error in handleLeague:", error);
+    toast.error("an error occur Please try again later.", {
+      className: "bg-[#06f6ad] text-white",
+      bodyClassName: "text-white font-Roboto",
+      progressClassName: "bg-[#FF0000]",
+    });
+    // You can also display this message in a more user-friendly way in the UI, like a toast notification
+  }
   };
 
   const handleTeamNameB = (id, tName) => {
@@ -224,19 +268,23 @@ const Option = () => {
   };
   return (
     <div>
+        {loading ? (
+            <div className="flex justify-center items-center  min-h-screen "><span className="loader flex"></span></div>
+      ): (
+    <div>
       {!show ? (
         <div className="bg-[#213045]">
           <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden bg-[#213045] min-h-screen">
             <div className="mx-auto max-w-2xl">
-              <div className="p-4">
+              <div className="p-4"> 
                 <h2 className="text-white capitalize font-oswald font-medium text-2xl m-4 ml-2">
-                  team a
+                  Home
                 </h2>
                 <TeamSelection
                   isDarkened={state.isDarkened}
                   onSelect={handleLeague}
                   teamDisplay={state.teamDisplay}
-                  setOpenModal={toggleModal} // Updated to use the toggle function
+                  setOpenModal={toggleModal} 
                 />
                 <Modal
                   openModal={state.openModal}
@@ -246,7 +294,7 @@ const Option = () => {
               </div>
               <div className="p-4">
                 <h2 className="text-white capitalize font-oswald font-medium text-2xl m-4 ml-2">
-                  team b
+                  Away
                 </h2>
                 <TeamSelection
                   isDarkened={state.isDarkened2}
@@ -295,7 +343,7 @@ const Option = () => {
                 >
                   continue
                 </button>
-              </div>
+              </div>                                         
             </div>
           </div>
         </div>
@@ -307,7 +355,9 @@ const Option = () => {
         />
       )}
     </div>
-  );
+      )}
+  </div>
+  )
 };
 
 export default Option;

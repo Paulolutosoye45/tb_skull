@@ -12,7 +12,17 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 const Profile = () => {
   const [copied, setCopied] = useState(false);
+  const [Loading, setloading] = useState(true)
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setloading(false)
+      users
+    }, 2000);
+
+    // Cleanup function to clear the interval on unmount
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (copied) setCopied(false);
@@ -41,7 +51,7 @@ const Profile = () => {
   const month = currentDate.getMonth() + 1; // getMonth returns 0-based index
   const currentMonthAbbreviation = monthly[month];
 
-  const copy = `https://t.me/pee3_bot?start=${referralCode}`;
+  const copy = `https://t.me/reward_4_bot?start=${referralCode}`;
 
   const handleRef = () => {
     navigator.clipboard.writeText(copy);
@@ -49,13 +59,17 @@ const Profile = () => {
   };
   const navigate = useNavigate();
   const handleNav = () => {
-    navigate(-1);
+    navigate('/');
   };
   return (
     <div>
-      <MaxWidthScreen>
+      <MaxWidthScreen>     
+       {Loading ? (
+            <div className="flex justify-center items-center min-h-screen"><span className="loader flex"></span></div>
+      ): (
+        <div>
       <div className="p-4 flex items-center font-josefin font-medium my-3">
-        <FaArrowLeft className="text-2xl text-white "  onClick={handleNav}/>
+        <FaArrowLeft className="text-2xl text-white"  onClick={handleNav}/>
         <p className="uppercase  text-white text-center font-bold flex-grow">
           profile
         </p>
@@ -65,7 +79,7 @@ const Profile = () => {
           <BsPersonCircle className="w-10 h-10 text-white rounded-full object-cover" />
         </div>
 
-        <div className="p-7">
+        <div className="p-7 pb-20">
           <div className="py-4">
             <h1 className="uppercase text-base  text-white mb-2">User ID</h1>
             <div className="border-b-2 flex justify-between items-center cursor-pointer pb-2">
@@ -89,7 +103,7 @@ const Profile = () => {
               Referral Link
             </h1>
             <div className="border-b-2 flex justify-between items-center cursor-pointer pb-2">
-              <p className="text-yellow-400  font-oswald text-base">{copy}</p>
+              <p className="text-yellow-400  font-oswald text-sm">{copy}</p>
               {copied ? (
                 <p className="text-sm text-white">copied</p>
               ) : (
@@ -101,7 +115,7 @@ const Profile = () => {
             </div>
           </div>
 
-          <Flexwrapper className="pt-2">
+          <Flexwrapper className="pt-2 font-josefin">
             <h1 className="uppercase text-base  text-white">
               {currentMonthAbbreviation} Score
             </h1>
@@ -110,13 +124,14 @@ const Profile = () => {
             </p>
           </Flexwrapper>
 
-          <Flexwrapper className="py-7">
+          <Flexwrapper className="py-5 font-josefin">
             <h1 className="uppercase text-base  text-white">Total Score</h1>
             <p className="uppercase text-base  text-white">
               {users?.totalScore}
             </p>
           </Flexwrapper>
         </div>
+        </div>)}
       </MaxWidthScreen>
     </div>
   );

@@ -8,8 +8,17 @@ import MatchItem from './MatchItem';
 const MatchList = () => {
   const { matchDetails } = useContext(UserContext);
   const [selections, setSelections] = useState([])
+  const [Loading, setloading] = useState(true)
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setloading(false)
+      // selections
+    }, 2000);
 
+    // Cleanup function to clear the interval on unmount
+    return () => clearInterval(interval);
+  }, []);
   const handleChange = (selection) => {
     const result =  selections.find((item) => item.id === selection.id )
     if(!result){
@@ -25,7 +34,6 @@ const MatchList = () => {
           return item
         }))
   }
-
 
   const handleRemove = (id) => {
      setSelections((state) => state.filter((item) => item.id !== id))
@@ -43,6 +51,10 @@ const MatchList = () => {
   }, [matchDetails]);
 
   return (
+      <div>
+       {Loading ? (
+            <div className="flex justify-center items-center"><span className="loader flex"></span></div>
+      ): (
     <div className='pb-24'>
       {matchDetails.length > 0 ? (
         matchDetails.map((match) => (
@@ -58,8 +70,8 @@ const MatchList = () => {
             setSelections={setSelections}
           />
         ) : null}
-    </div>
-
+    </div>)}
+   </div>
   );
 };
 

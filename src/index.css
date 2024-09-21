@@ -10,10 +10,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+header {
+  background-color: var(--tg-theme-header-bg-color, #213045);
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
+html, body, #root {
+  height: 100%;
+}
+ .body {
+  background-color: var(--tg-theme-header-bg-color, #213045);
+  overflow-x: hidden;
+ }
 .scrollbar-hide {
   -ms-overflow-style: none;
   /* IE and Edge */
@@ -65,13 +77,8 @@
 
 .glass {
   background: rgba(186, 186, 225, 0.2);
-  /* opacity: 0.6; */
-  /* border-radius:3px */
-  /* border: 1px solid rgba(255, 255, 255, .2); */
-  /* border-right: 2px solid rgba(255, 255, 255, .2);
-  border-bottom: 2px solid rgba(255, 255, 255, .2); */
   backdrop-filter: blur(10px);
 }
 .bgicon {
-  background-image: url(../../public/access/bg-2.png);
+  background-image: url("/public/access/bg-2.png?v=1");
 }

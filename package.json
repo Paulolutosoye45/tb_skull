@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.8",
+    "@heroicons/react": "^2.1.5",
     "axios": "^1.7.5",
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.4",
@@ -19,7 +21,8 @@
     "react-router": "^6.26.1",
     "react-router-dom": "^6.26.1",
     "react-toastify": "^10.0.5",
-    "telegraf": "^4.16.3"
+    "telegraf": "^4.16.3",
+    "telegram-web-app": "^0.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
