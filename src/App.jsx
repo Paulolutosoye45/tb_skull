@@ -22,6 +22,7 @@ import QuestionPage from './pages/QuestionsPage';
 import AddClubs from './Admin/AddClubs';
 import AdminErrorPage from './Admin/AdminErrorpage';
 import Question from './Admin/Question';
+import UpdateQuestions from './Admin/updateQuestions';
 
 function App() {
     const [opening, setOpening] = useState(false);
@@ -89,6 +90,10 @@ function App() {
         {
           path: 'questions', 
           element: <Question  />,
+        },
+        {
+          path: 'updateQuestions', 
+          element: <UpdateQuestions  />,
         },
       ]
     },

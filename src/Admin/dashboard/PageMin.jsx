@@ -60,6 +60,9 @@ function PageMin() {
           <Link  to="/admin/questions" className="hover:text-yellow-400">question and answer </Link>  
             </div>
             <div className="text-white font-Roboto text-2xl font-bold capitalize p-6 hover:bg-gray-700 transition duration-300 ease-in-out rounded-b-xl">
+          <Link  to="/admin/updateQuestions" className="hover:text-yellow-400"> update question</Link>  
+            </div>
+            <div className="text-white font-Roboto text-2xl font-bold capitalize p-6 hover:bg-gray-700 transition duration-300 ease-in-out rounded-b-xl">
           <Link  to="/admin/addclub" className="hover:text-yellow-400">can't find team </Link>  
             </div>
           </div>
