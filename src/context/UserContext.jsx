@@ -13,10 +13,12 @@ export const UserProvider = ({ children }) => {
   const [referralCode, setReferralCode] = useState(null);
   const [arrLeaderBoard, setArrLeaderBoard]= useState([])
   const [arrMonthly, setArrMonthly]=useState([])
+  // const [isLoading, setIsLoading]=useState(false)
   // Retrieve user ID from session
   const userVar = retrieveUserIdFromSession();
 
   const fetchData = async (userIds) => {
+    // setIsLoading(true)
     const userId = userVar || userIds;
     try {
       const response = await axios.post(`${import.meta.env.VITE_APP_API_URL}/bot/usergames`, {
@@ -28,7 +30,9 @@ export const UserProvider = ({ children }) => {
       setMatchDetails(result.matchDetails || []);
       setArrLeaderBoard(result.leaderboards || []);
       setArrMonthly(result.monthlyLeaderboards || []);
+      // setIsLoading(false)
     } catch (error) {
+      // setIsLoading(false)
       console.error('Error fetching data:', error.response || error.message);
     }
   };
@@ -57,6 +61,7 @@ export const UserProvider = ({ children }) => {
   const contextData = {
     users,
     setUsers,
+    // isLoading,
     matchDetails,
     setMatchDetails,
     referralCode,

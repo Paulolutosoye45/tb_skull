@@ -40,6 +40,7 @@ function Question() {
       });
 
       // Reset form fields after successful submission
+      setQuestion('')
       setOptions({
         optionA: '',
         optionB: '',
@@ -47,7 +48,7 @@ function Question() {
         optionD: '',
       });
       setCorrectAnswer('');
-      console.log('Question submitted successfully:', response.data);
+      // console.log('Question submitted successfully:', response.data);
       if (response.data.responseCode === '00') {
         if (divRef.current) {
           divRef.current.classList.remove('hidden'); // Add class to the div

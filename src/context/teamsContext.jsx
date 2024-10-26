@@ -16,7 +16,7 @@ export const TeamProvider = ({ children }) => {
       setTeamLeague(teamResult.teams);
     } catch (error) {
       console.error('Error fetching data:', error.response || error.message);
-      console.log(error.response )
+      // console.log(error.response )
     }
   };
   

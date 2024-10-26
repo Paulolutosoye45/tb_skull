@@ -55,7 +55,7 @@ function Board() {
 
   return (
     <div className="bg-[#213045]">
-      <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden min-h-screen">
+      <div className="mx-auto w-full max-w-screen-xl md:px-20 overflow-hidden h-screen">
         <div className="mx-auto max-w-3xl">
           <div className="max-w-xl mx-auto">
             <Flexwrapper className="p-4 my-3  border-b-2 border-gray-700 ">
